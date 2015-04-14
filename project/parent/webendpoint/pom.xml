@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  
+  <parent>
+  	<groupId>org.blogdemo.travelagency</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>webendpoint</artifactId>
+  <packaging>bundle</packaging>
+  
+
+  <name>Travel Agency Fuse Demo Web Endpoint</name>
+  <url>http://www.myorganization.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <pax-exam-version>1.2.0</pax-exam-version>
+    <fabric8.parentProfiles>feature-camel mq-client</fabric8.parentProfiles>                                                       
+	<fabric8.profile>demo-travelagency-webendpoint</fabric8.profile>
+	<fabric8.features>camel-cxf activemq-camel camel-jackson</fabric8.features>                
+  </properties>
+
+  <dependencies>
+  	<dependency>
+		<groupId>org.ow2.asm</groupId>
+		<artifactId>asm-all</artifactId>
+		<version>4.1</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-blueprint</artifactId>
+    </dependency>
+
+ 	<!-- Database persistence-->
+	<dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-jpa</artifactId>
+	</dependency>
+		
+	<dependency>
+    	<groupId>org.apache.openjpa</groupId>
+        <artifactId>openjpa</artifactId>
+        <version>2.3.0</version>
+    </dependency>  
+       
+ 	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<version>1.4.181</version>
+	</dependency>
+    
+	<!-- For Web Service with CXF -->
+	 <dependency>
+	    <groupId>org.apache.camel</groupId>
+	    <artifactId>camel-cxf</artifactId>
+	</dependency>
+		
+	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.cxf</groupId>
+	    <artifactId>cxf-rt-transports-http-jetty</artifactId>
+	</dependency>
+	
+	<dependency>
+	  <groupId>org.apache.camel</groupId>
+	  <artifactId>camel-jackson</artifactId>
+	</dependency>
+
+	<!-- Messging with AMQ and JMS -->
+	<dependency>
+		<groupId>org.apache.activemq</groupId>
+		<artifactId>activemq-camel</artifactId>
+	</dependency>	
+	<dependency>
+	  <groupId>org.apache.camel</groupId>
+	  <artifactId>camel-jms</artifactId>
+	</dependency>
+  </dependencies>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <plugins>
+    
+      <!-- to generate source code from the wsdl file -->
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>2.7.0.redhat-610379</version>
+        <executions>
+          <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+              <sourceRoot>${basedir}/target/generated/src/main/java</sourceRoot>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>${basedir}/src/main/resources/wsdl/AcmeDemoInterface.wsdl</wsdl>
+                  <extraargs>
+                    <extraarg>-impl</extraarg>
+                  </extraargs>
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+    
+      
+      <!-- to generate the MANIFEST-FILE of the bundle -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>travelagency</Bundle-SymbolicName>
+            <Private-Package>org.blogdemo.travelagency.*</Private-Package>
+            <Import-Package>*</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+
+  
+	  
+    </plugins>
+  </build>
+
+</project>
