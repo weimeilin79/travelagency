@@ -13,24 +13,19 @@
   <packaging>bundle</packaging>
   
 
-  <name>Travel Agency Fuse Demo Web Endpoint</name>
+  <name>Travel Agency Flight Contract first Web Endpoint Service (CXF)</name>
   <url>http://www.myorganization.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <pax-exam-version>1.2.0</pax-exam-version>
     <fabric8.parentProfiles>feature-camel mq-client</fabric8.parentProfiles>                                                       
 	<fabric8.profile>demo-travelagency-webendpoint</fabric8.profile>
 	<fabric8.features>camel-cxf activemq-camel camel-jackson</fabric8.features>                
   </properties>
 
   <dependencies>
-  	<dependency>
-		<groupId>org.ow2.asm</groupId>
-		<artifactId>asm-all</artifactId>
-		<version>4.1</version>
-    </dependency>
+
     
     <dependency>
       <groupId>org.apache.camel</groupId>
@@ -41,34 +36,17 @@
       <artifactId>camel-blueprint</artifactId>
     </dependency>
 
- 	<!-- Database persistence-->
-	<dependency>
-	    <groupId>org.apache.camel</groupId>
-	    <artifactId>camel-jpa</artifactId>
-	</dependency>
-		
-	<dependency>
-    	<groupId>org.apache.openjpa</groupId>
-        <artifactId>openjpa</artifactId>
-        <version>2.3.0</version>
-    </dependency>  
-       
- 	<dependency>
-		<groupId>commons-dbcp</groupId>
-		<artifactId>commons-dbcp</artifactId>
-		<version>1.4</version>
-	</dependency>
-	<dependency>
-		<groupId>com.h2database</groupId>
-		<artifactId>h2</artifactId>
-		<version>1.4.181</version>
-	</dependency>
-    
 	<!-- For Web Service with CXF -->
 	 <dependency>
-	    <groupId>org.apache.camel</groupId>
-	    <artifactId>camel-cxf</artifactId>
-	</dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-cxf</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 		
 	<dependency>
 	    <groupId>org.apache.cxf</groupId>

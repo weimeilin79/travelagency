@@ -13,7 +13,7 @@
   <packaging>bundle</packaging>
   
 
-  <name>Travel Agency Fuse Demo Booking service (JPA)</name>
+  <name>Travel Agency Flights Booking service (JPA)</name>
   <url>http://www.myorganization.org</url>
 
   <properties>
@@ -24,7 +24,6 @@
 	<fabric8.bundles>wrap:mvn:org.apache.openjpa/openjpa-all/2.3.0 wrap:mvn:com.h2database/h2/1.4.181</fabric8.bundles>
 	<fabric8.features>camel-jpa activemq-camel</fabric8.features>                
   </properties>
-
 
 
   <dependencies>

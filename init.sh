@@ -126,7 +126,7 @@ sleep 15
 
 echo "  - Create Fabric in Fuse"
 echo
-sh bin/client -r 3 -d 20 -u admin -p admin 'fabric:create --wait-for-provisioning'
+sh bin/client -r 3 -d 50 -u admin -p admin 'fabric:create --wait-for-provisioning'
 
 pwd
 
@@ -143,17 +143,29 @@ cd ../../target/$FUSE
 
 sleep 15 
 
-echo "Create containers and add profiles for web service endpoint"
+echo "Create containers and add profiles for Flight web service endpoint"
 echo         
-sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-webendpoint root wscon'
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-webendpoint root wsflightcon'
 
-echo "Create containers and add profiles for booking service"
+echo "Create containers and add profiles for Hotel web service endpoint"
 echo         
-sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-bookingservice root bookingcon'
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-hotelwsendpoint root wshotelcon'
+
+echo "Create containers and add profiles for flight booking service"
+echo         
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-bookingservice root bookingflightcon'
+
+echo "Create containers and add profiles for hotel booking service"
+echo         
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-hotelbookingservice root bookinhotelgcon'
 
 echo "Create containers and add profiles flight promotion"
 echo
-sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-promotionflight root promocon'
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-promotionflight root promoflightcon'
+
+echo "Create containers and add profiles hotel promotion"
+echo
+sh bin/client -r 2 -d 40 'container-create-child --profile demo-travelagency-promotionhotel root promohotelcon'
 
 echo "To stop the backgroud Fuse process, please go to bin and execute stop"
 echo

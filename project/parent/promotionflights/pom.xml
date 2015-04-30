@@ -13,7 +13,7 @@
   <packaging>bundle</packaging>
   
 
-  <name>Travel Agency Fuse Demo, Promotion Flight Service (JDBC)</name>
+  <name>Travel Agency Promotion Flights service (JDBC)</name>
   <url>http://www.myorganization.org</url>
 
   <properties>

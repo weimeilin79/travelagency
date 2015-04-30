@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1430394281958
+Build-Jdk: 1.7.0_60-ea
+Built-By: christina
+Bundle-ManifestVersion: 2
+Bundle-Name: Travel Agency Promotion Hotel service (JDBC)
+Bundle-SymbolicName: promotionhotel
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+DynamicImport-Package: org.apache.commons.dbcp, *
+Export-Package: org.blogdemo.travelagency.promotionhotel;uses:="org.apac
+ he.camel";version="1.0.0"
+Import-Package: org.apache.activemq.camel.component;version="[5.9,6)",or
+ g.apache.camel;version="[2.12,3)",org.osgi.service.blueprint;version="[
+ 1.0.0,2.0.0)"
+Tool: Bnd-1.50.0
